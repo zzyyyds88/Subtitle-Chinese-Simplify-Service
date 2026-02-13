@@ -100,6 +100,3 @@ POST /batch-convert
 }
 ```
 
-## 建议提交前检查
-- 确认 `data/config.json`、`download/`、`logs/` 等已忽略
-- 将本地 `docker-compose.yml` 替换为公共 `docker-compose.example.yml`
