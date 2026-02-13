@@ -1,0 +1,25 @@
+{
+  "replace_original": false,
+  "output_suffix": "_simplified",
+  "backup_original": true,
+  "max_file_size_mb": 500,
+  "allowed_extensions": [".mkv", ".mp4", ".avi", ".mov"],
+  "video_directory": "download",
+  "api_settings": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": false
+  },
+  "parallel_settings": {
+    "max_workers": 3
+  },
+  "smtp_settings": {
+    "enable_email_notification": false,
+    "smtp_server": "smtp.example.com",
+    "smtp_port": 465,
+    "sender_email": "your_email@example.com",
+    "sender_password": "your_app_password",
+    "use_ssl": true,
+    "recipient_email": "recipient@example.com"
+  }
+}

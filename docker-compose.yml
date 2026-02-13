@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  video-converter:
+    image: video-converter:latest
+    container_name: video-converter
+    ports:
+      - "5000:5000"
+    volumes:
+      # 映射数据目录
+      - /vol1/1000/Docker/video-converter/data:/app/data
+      # 映射下载目录
+      - /vol2/1000/影视/动漫:/app/download
+      # 可选：映射日志目录
+      - /vol1/1000/Docker/video-converter/:/app/logs
+    environment:
+      - TZ=Asia/Shanghai
+      - PYTHONUNBUFFERED=1
+      - UMASK=0022
+    restart: unless-stopped
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "ffmpeg", "-version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  video-converter:
+    image: video-converter:latest
+    container_name: video-converter
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./download:/app/download
+      - ./logs:/app/logs
+    environment:
+      - TZ=Asia/Shanghai
+      - PYTHONUNBUFFERED=1
+      - UMASK=0022
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "ffmpeg", "-version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
